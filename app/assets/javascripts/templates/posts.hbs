@@ -1,8 +1,9 @@
 <div class='posts'>
   {{#each post in controller}}
   <div class='post'>
-    <div class='title'>{{ post.title }}</div>
+    <h2>{{ post.title }}</h2>
     <div class='body'>{{{ post.body }}}</div>
+    {{#linkTo "post" post}} View Post {{/linkTo}}
   </div>
   <hr>
   {{else}}
