@@ -1,0 +1,11 @@
+<div class='posts'>
+  {{#each post in controller}}
+  <div class='post'>
+    <div class='title'>{{ post.title }}</div>
+    <div class='body'>{{{ post.body }}}</div>
+  </div>
+  <hr>
+  {{else}}
+    <h3>No posts to show you...</h3>
+  {{/each}}
+</div>
