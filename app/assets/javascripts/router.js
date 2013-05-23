@@ -1,3 +1,7 @@
+App.Router.reopen({
+  location: "history"
+});
+
 App.Router.map(function(match){
   this.resource('posts');
   this.resource('post', {path: '/post/:post_id'});
