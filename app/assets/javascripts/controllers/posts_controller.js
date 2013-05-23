@@ -1,4 +1,4 @@
-EmberBlog.PostsController = Ember.ArrayController.extend({});
+App.PostsController = Ember.ArrayController.extend({});
 
 // Not needed - generated automatically
-//EmberBlog.PostController = Ember.ObjectController.extend({});
+//App.PostController = Ember.ObjectController.extend({});

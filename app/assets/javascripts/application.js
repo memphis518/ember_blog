@@ -17,4 +17,4 @@
 //= require ember-data
 //= require_self
 //= require ember_blog
-EmberBlog = Ember.Application.create();
+App = Ember.Application.create();

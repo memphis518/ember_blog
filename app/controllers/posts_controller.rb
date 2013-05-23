@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
- respond_to :json
+ respond_to :html, :json
 
  def index
    respond_with Post.all

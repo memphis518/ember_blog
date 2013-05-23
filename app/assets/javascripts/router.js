@@ -1,16 +1,17 @@
-EmberBlog.Router.map(function(match){
+App.Router.map(function(match){
   this.resource('posts');
   this.resource('post', {path: '/post/:post_id'});
 });
 
-EmberBlog.PostsRoute = Ember.Route.extend({
+App.PostsRoute = Ember.Route.extend({
   model: function() {
-    return EmberBlog.Post.find()
+    return App.Post.find()
   }
 });
 
-EmberBlog.PostRoute = Ember.Route.extend({
+App.PostRoute = Ember.Route.extend({
   model: function(params) {
-    return EmberBlog.Post.find(params.post_id)
+    return App.Post.find(params.post_id)
   }
 });
+
