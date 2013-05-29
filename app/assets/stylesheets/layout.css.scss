@@ -33,6 +33,10 @@ input {
 input[type='text'] {
   width: 535px;
 }
+textarea{
+  width: 535px;
+  height: 100px;
+}
 form input[type='submit'], button {
   -webkit-appearance: caret;
   font-size: 14px;

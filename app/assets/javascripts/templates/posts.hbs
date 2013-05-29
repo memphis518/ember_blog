@@ -1,10 +1,11 @@
+<div class='new-post'>
+  {{ view App.NewPostView }}
+</div>
+<hr>
 <div class='posts'>
   {{#each post in controller}}
-  <div class='post'>
-    <h2>{{ post.title }}</h2>
-    <div class='body'>{{{ post.body }}}</div>
-    {{#linkTo "post" post}} View Post {{/linkTo}}
-  </div>
+    {{ render 'post' post }}
+    {{#linkTo 'post' post}}View Post{{/linkTo}}
   <hr>
   {{else}}
     <h3>No posts to show you...</h3>

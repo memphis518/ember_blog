@@ -8,6 +8,7 @@ gem 'rails', '3.2.13'
 gem 'sqlite3'
 gem 'ember-rails'
 gem 'faker'
+gem 'momentjs-rails'
 
 # Gems used only for assets and not required
 # in production environments by default.

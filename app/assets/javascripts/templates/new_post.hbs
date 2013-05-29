@@ -1,0 +1,7 @@
+{{ view Ember.TextField valueBinding='view.newPostTitle'}}
+{{ view Ember.TextArea valueBinding='view.newPostBody' }}
+<input type="submit" value='Create Post'>
+
+<h3>Preview</h3>
+{{{ view.newPostTitle }}}
+{{{ view.newPostBody }}}

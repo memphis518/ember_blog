@@ -11,5 +11,8 @@ include ActionView::Helpers::TextHelper
 10.times do
   paragraphs = Faker::Lorem.paragraphs(5).collect{ |p| simple_format(p) }
 
-  Post.create(title: Faker::Lorem.sentence, body: paragraphs.join(' '))
+  post = Post.new(title: Faker::Lorem.sentence, body: paragraphs.join(' '))
+  post.view_count = rand(1..100)
+  post.comment_count = rand(1..100)
+  post.save
 end
