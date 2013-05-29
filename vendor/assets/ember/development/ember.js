@@ -23320,7 +23320,7 @@ define("route-recognizer",
     END IF **/
 
     // This is a somewhat naive strategy, but should work in a lot of cases
-    // A better strategy would properly resolve /posts/:id/new and /posts/edit/:id
+    // A better strategy would properly resolve /post/:id/new and /post/edit/:id
     function sortSolutions(states) {
       return states.sort(function(a, b) {
         if (a.types.stars !== b.types.stars) { return a.types.stars - b.types.stars; }
@@ -24058,7 +24058,7 @@ define("router",
 
       ```
       |~index ("/")
-      | |~posts ("/posts")
+      | |~post ("/post")
       | | |-showPost ("/:id")
       | | |-newPost ("/new")
       | | |-editPost ("/edit")
@@ -24067,9 +24067,9 @@ define("router",
 
       Consider the following transitions:
 
-      1. A URL transition to `/posts/1`.
+      1. A URL transition to `/post/1`.
          1. Triggers the `deserialize` callback on the
-            `index`, `posts`, and `showPost` handlers
+            `index`, `post`, and `showPost` handlers
          2. Triggers the `enter` callback on the same
          3. Triggers the `setup` callback on the same
       2. A direct transition to `newPost`
@@ -24079,7 +24079,7 @@ define("router",
       3. A direct transition to `about` with a specified
          context object
          1. Triggers the `exit` callback on `newPost`
-            and `posts`
+            and `post`
          2. Triggers the `serialize` callback on `about`
          3. Triggers the `enter` callback on `about`
          4. Triggers the `setup` callback on `about`
@@ -24941,7 +24941,7 @@ Ember.Route = Ember.Object.extend({
 
     ```js
     App.Router.map(function() {
-      this.resource('post', {path: '/posts/:post_id'});
+      this.resource('post', {path: '/post/:post_id'});
     });
     ```
 
@@ -24992,17 +24992,17 @@ Ember.Route = Ember.Object.extend({
 
     ```js
     App.Router.map(function() {
-      this.resource('post', {path: '/posts/:post_id'});
+      this.resource('post', {path: '/post/:post_id'});
     });
 
     App.PostRoute = Ember.Route.extend({
       model: function(params) {
         // the server returns `{ id: 12 }`
-        return jQuery.getJSON("/posts/" + params.post_id);
+        return jQuery.getJSON("/post/" + params.post_id);
       },
 
       serialize: function(model) {
-        // this will make the URL `/posts/12`
+        // this will make the URL `/post/12`
         return { post_id: model.id };
       }
     });
@@ -25042,7 +25042,7 @@ Ember.Route = Ember.Object.extend({
 
     ```js
     App.Router.map(function() {
-      this.resource('post', {path: '/posts/:post_id'});
+      this.resource('post', {path: '/post/:post_id'});
     });
     ```
 
@@ -25072,7 +25072,7 @@ Ember.Route = Ember.Object.extend({
     App.PostRoute = Ember.Route.extend({
       setupController: function(controller, post) {
         this._super(controller, post);
-        this.controllerFor('posts').set('currentPost', post);
+        this.controllerFor('post').set('currentPost', post);
       }
     });
     ```
@@ -25144,7 +25144,7 @@ Ember.Route = Ember.Object.extend({
     ```js
     App.Router.map(function() {
       this.route('index');
-      this.resource('post', {path: '/posts/:post_id'});
+      this.resource('post', {path: '/post/:post_id'});
     });
 
     App.PostRoute = App.Route.extend({
@@ -25738,7 +25738,7 @@ Ember.onLoad('Ember.Handlebars', function(Handlebars) {
     ```
 
     By default, a template based on Ember's naming conventions will be rendered
-    into the `outlet` (e.g. `App.PostsRoute` will render the `posts` template).
+    into the `outlet` (e.g. `App.PostsRoute` will render the `post` template).
 
     You can render a different template by using the `render()` method in the
     route's `renderTemplate` hook. The following will render the `favoritePost`
@@ -25756,7 +25756,7 @@ Ember.onLoad('Ember.Handlebars', function(Handlebars) {
 
     ``` handlebars
     {{outlet favoritePost}}
-    {{outlet posts}}
+    {{outlet post}}
     ```
 
     Then you can define what template is rendered into each outlet in your
@@ -25767,7 +25767,7 @@ Ember.onLoad('Ember.Handlebars', function(Handlebars) {
     App.PostsRoute = Ember.Route.extend({
       renderTemplate: function() {
         this.render('favoritePost', { outlet: 'favoritePost' });
-        this.render('posts', { outlet: 'posts' });
+        this.render('post', { outlet: 'post' });
       }
     });
     ```
@@ -27039,21 +27039,21 @@ var get = Ember.get,
 
   ```
   'template:post' //=> Ember.TEMPLATES['post']
-  'template:posts/byline' //=> Ember.TEMPLATES['posts/byline']
-  'template:posts.byline' //=> Ember.TEMPLATES['posts/byline']
+  'template:post/byline' //=> Ember.TEMPLATES['post/byline']
+  'template:post.byline' //=> Ember.TEMPLATES['post/byline']
   'template:blogPost' //=> Ember.TEMPLATES['blogPost']
                       //   OR
                       //   Ember.TEMPLATES['blog_post']
   'controller:post' //=> App.PostController
-  'controller:posts.index' //=> App.PostsIndexController
+  'controller:post.index' //=> App.PostsIndexController
   'controller:blog/post' //=> Post.PostController
   'controller:basic' //=> Ember.Controller
   'route:post' //=> App.PostRoute
-  'route:posts.index' //=> App.PostsIndexRoute
+  'route:post.index' //=> App.PostsIndexRoute
   'route:blog/post' //=> Post.PostRoute
   'route:basic' //=> Ember.Route
   'view:post' //=> App.PostView
-  'view:posts.index' //=> App.PostsIndexView
+  'view:post.index' //=> App.PostsIndexView
   'view:blog/post' //=> Post.PostView
   'view:basic' //=> Ember.View
   'foo:post' //=> App.PostFoo
@@ -27485,7 +27485,7 @@ var Application = Ember.Application = Ember.Namespace.extend(Ember.DeferredMixin
     var App = Ember.Application.create();
 
     App.Router.map(function() {
-      this.resource('posts');
+      this.resource('post');
     });
     ```
 
@@ -29160,8 +29160,8 @@ Ember.StateManager = Ember.State.extend({
 
   /**
     A state stores its child states in its `states` hash.
-    This code takes a path like `posts.show` and looks
-    up `root.states.posts.states.show`.
+    This code takes a path like `post.show` and looks
+    up `root.states.post.states.show`.
 
     It returns a list of all of the states from the
     root, which is the list of states to call `enter`
@@ -29230,16 +29230,16 @@ Ember.StateManager = Ember.State.extend({
     // the following state hierarchy:
     //
     //    | |root
-    //    | |- posts
+    //    | |- post
     //    | | |- show (* current)
     //    | |- comments
     //    | | |- show
     //
-    // If the current state is `<root.posts.show>`, an attempt to
+    // If the current state is `<root.post.show>`, an attempt to
     // transition to `comments.show` will match `<root.comments.show>`.
     //
-    // First, this code will look for root.posts.show.comments.show.
-    // Next, it will look for root.posts.comments.show. Finally,
+    // First, this code will look for root.post.show.comments.show.
+    // Next, it will look for root.post.comments.show. Finally,
     // it will look for `root.comments.show`, and find the state.
     //
     // After this process, the following variables will exist:
@@ -29254,7 +29254,7 @@ Ember.StateManager = Ember.State.extend({
     // * exitStates: a list of all of the states from the
     //   `resolveState` to the `currentState`. In the above
     //   example, `exitStates` would have
-    //   `[<root.posts>`, `<root.posts.show>]`.
+    //   `[<root.post>`, `<root.post.show>]`.
     while (resolveState && !enterStates) {
       exitStates.unshift(resolveState);
 

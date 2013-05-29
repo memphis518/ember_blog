@@ -13,7 +13,7 @@
 
 ActiveRecord::Schema.define(:version => 20130521142353) do
 
-  create_table "posts", :force => true do |t|
+  create_table "post", :force => true do |t|
     t.string   "title"
     t.text     "body"
     t.integer  "view_count"

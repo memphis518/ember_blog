@@ -4972,7 +4972,7 @@ DS.Model.reopenClass({
         App.Post = DS.Model.extend({
           users: DS.hasMany(App.User),
           owner: DS.belongsTo(App.User),
-          posts: DS.hasMany(App.Post)
+          post: DS.hasMany(App.Post)
         });
 
     This computed property would return a map describing these
@@ -4983,7 +4983,7 @@ DS.Model.reopenClass({
         //=> [ { name: 'users', kind: 'hasMany' },
         //     { name: 'owner', kind: 'belongsTo' } ]
         relationships.get(App.Post);
-        //=> [ { name: 'posts', kind: 'hasMany' } ]
+        //=> [ { name: 'post', kind: 'hasMany' } ]
 
     @type Ember.Map
     @readOnly
@@ -5021,14 +5021,14 @@ DS.Model.reopenClass({
           users: DS.hasMany(App.User),
           owner: DS.belongsTo(App.User),
 
-          posts: DS.hasMany(App.Post)
+          post: DS.hasMany(App.Post)
         });
 
     This property would contain the following:
 
        var relationshipNames = Ember.get(App.Post, 'relationshipNames');
        relationshipNames.hasMany;
-       //=> ['users', 'posts']
+       //=> ['users', 'post']
        relationshipNames.belongsTo;
        //=> ['owner']
 
@@ -5057,7 +5057,7 @@ DS.Model.reopenClass({
         App.Post = DS.Model.extend({
           users: DS.hasMany(App.User),
           owner: DS.belongsTo(App.User),
-          posts: DS.hasMany(App.Post)
+          post: DS.hasMany(App.Post)
         });
 
     This property would contain the following:
@@ -5106,7 +5106,7 @@ DS.Model.reopenClass({
           users: DS.hasMany(App.User),
           owner: DS.belongsTo(App.User),
 
-          posts: DS.hasMany(App.Post)
+          post: DS.hasMany(App.Post)
         });
 
     This property would contain the following:
@@ -5151,7 +5151,7 @@ DS.Model.reopenClass({
           users: DS.hasMany(App.User),
           owner: DS.belongsTo(App.User),
 
-          posts: DS.hasMany(App.Post),
+          post: DS.hasMany(App.Post),
 
           title: DS.attr('string')
         });
@@ -5164,7 +5164,7 @@ DS.Model.reopenClass({
         // prints:
         // users, hasMany
         // owner, belongsTo
-        // posts, hasMany
+        // post, hasMany
         // title, attribute
 
     @type Ember.Map
@@ -8454,7 +8454,7 @@ var get = Ember.get, set = Ember.set;
 
   The JSON payload should be an object that contains the record inside a
   root property. For example, in response to a `GET` request for
-  `/posts/1`, the JSON should look like this:
+  `/post/1`, the JSON should look like this:
 
   ```js
   {

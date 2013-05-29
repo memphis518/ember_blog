@@ -3,7 +3,9 @@ App.Router.reopen({
 });
 
 App.Router.map(function(match){
-  this.resource('posts');
+  this.resource('posts', function(){
+    this.route('new')
+  });
   this.resource('post', {path: '/post/:post_id'});
 });
 
@@ -18,4 +20,11 @@ App.PostRoute = Ember.Route.extend({
     return App.Post.find(params.post_id)
   }
 });
+
+App.PostsNewRoute = Ember.Route.extend({
+  setupController: function(controller, model) {
+    controller.set('content', {});
+  }
+});
+
 

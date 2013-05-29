@@ -19,3 +19,7 @@ App.PostController = Ember.ObjectController.extend({
   }.property('createdAtMoment')
 });
 
+App.PostsNewController = Ember.ObjectController.extend({
+  submitForm: function(){ },
+  something: function(){ }
+});
